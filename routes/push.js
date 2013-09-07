@@ -3,7 +3,7 @@ var gcm = require('node-gcm');
 var routes = function(app) {
 
   // Defines the root page. can be safely removed!
-  app.get('/push', function(req, res) {
+  app.get('/push/:regid', function(req, res) {
     var message = new gcm.Message({
       collapseKey: 'demo',
       delayWhileIdle: true,
@@ -15,7 +15,9 @@ var routes = function(app) {
     })
     var sender = new gcm.Sender('insert Google Server API Key here');
     var registrationIds = [];
-    registrationIds.push('regId1');
+    var regid = req.params.regid;
+    registrationIds.push(regid);
+    console.log("Registration id: "+regid);
     sender.send(message, registrationIds, 4, function (err, result) {
       console.log(result);
     });

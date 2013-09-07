@@ -9,6 +9,7 @@
     "mongoose": "3.6.x",
     "stylus": "0.37.x",
     "connect-mongo": "0.3.x",
+    "twilio": "*",
     "node-gcm": "*"
   },
   "devDependencies": {
@@ -16,6 +17,10 @@
   },
   "scripts": {
     "start": "nodemon -w models -w config -w routes app.js"
+  },
+  "engines": {
+      "node": "0.8.x",
+      "npm": "1.2.x"
   },
   "repository": "",
   "private": true

@@ -1,6 +1,6 @@
+var gcm = require('node-gcm');
+
 var routes = function(app) {
-  requireRoutes(__dirname, app),
-    gcm = require('node-gcm');
 
   // Defines the root page. can be safely removed!
   app.get('/push', function(req, res) {

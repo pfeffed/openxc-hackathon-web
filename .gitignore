@@ -1,0 +1,111 @@
+#### Node Git Ignore ####
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+npm-debug.log
+node_modules
+
+config.js
+nock_request_recorder.js
+*.png
+
+#### Windows Git Ignore ####
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+#### Mac Git Ignore ####
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+#### Linux Git Ignore ####
+.*
+!.gitignore
+*~
+
+##### IntelliJ Git Ignore ####
+*.iml
+*.ipr
+*.iws
+.idea/
+
+#### Eclipse Git Ignore ####
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+#### Sublime Text Git Ignore ####
+# SublimeText project files
+*.sublime-workspace
+
+#### Vim Git Ignore ####
+.*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+#### Emacs Git Ignore ####
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+cookie-jar

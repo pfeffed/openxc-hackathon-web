@@ -4,7 +4,7 @@ var routes = function(app) {
 
   app.get('/action/:id/unlock', function(req, res) {
     twilio.sms.messages.create({
-      body: "lock",
+      body: "unlock",
       to: req.params.id,
       from: "+14154244347"
     }, function(err, message) {
@@ -15,7 +15,7 @@ var routes = function(app) {
 
   app.get('/action/:id/lock', function(req, res) {
     twilio.sms.messages.create({
-      body: "unlock",
+      body: "lock",
       to: req.params.id,
       from: "+14154244347"
     }, function(err, message) {

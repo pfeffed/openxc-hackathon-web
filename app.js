@@ -5,13 +5,14 @@ var path = require('path'),
     config = require('./config'),
     MongoStore = require('connect-mongo')(express);
 
+/*
 var mongooseConnection = mongoose.connect(config.db.url, function(err) {
     if (err) {
         console.log('Could not connect to database', config.db.url, ' due to error', err);
         process.exit(1);
     }
 });
-
+*/
 var app = express();
 
 // Express settings

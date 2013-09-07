@@ -29,15 +29,6 @@ module.exports = function(app) {
       return false;
     },
 
-    classForTicketStatus: function(status) {
-      if (status == 'open') {
-        return 'warning';
-      } else if (status == 'moved'){
-        return 'danger';
-      }
-      return 'default';
-    },
-
     display : function(value) {
       if (util.isDate(value)) {
         return value.toLocaleDateString();

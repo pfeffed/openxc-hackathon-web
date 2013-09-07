@@ -5,14 +5,14 @@ var path = require('path'),
     config = require('./config'),
     MongoStore = require('connect-mongo')(express);
 
-/*
+
 var mongooseConnection = mongoose.connect(config.db.url, function(err) {
     if (err) {
         console.log('Could not connect to database', config.db.url, ' due to error', err);
         process.exit(1);
     }
 });
-*/
+
 var app = express();
 
 // Express settings
@@ -62,9 +62,9 @@ var invokedAsMain = require.main === module;
 
 // Start server if not invoked by require('./app')
 if (invokedAsMain) {
-    http.createServer(app).listen(app.get('port'), config.address, function() {
+    http.createServer(app).listen(app.get('port'), function() {
         console.log("Express server listening on %s:%d in %s mode", config.address, config.port, app.settings.env);
-    });    
+    });
 } else {
     // Export app if invoked by require('./app')
     module.exports = app;

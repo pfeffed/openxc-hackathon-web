@@ -66,15 +66,6 @@ var routes = function(app) {
           });
       });
   });
-
-  app.post('/trigger/vehicle-speed-lt', function(req, res){
-    console.log("Vehicle speed less than: "+res.body);
-    res.json(200);
-  });
-
-  app.post('/trigger/ignition-on-idle', function(req, res){
-
-  });
 };
 
 module.exports = routes;

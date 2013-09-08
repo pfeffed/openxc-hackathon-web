@@ -18,9 +18,11 @@ var routes = function(app) {
       if (err) {
         res.json(400, err);
       } else {
+        var msg = "sub "+data.event+" "+data.trigger_data.vehicle_speed;
+        console.log(msg);
         twilio.sms.messages.create({
-          body: "sub "+data.event+" "+data.trigger_data.vehicle_speed,
-          to: req.params.id,
+          body: msg,
+          to: data.trigger_data.vid,
           from: "+14154244347"
         }, function(err, message) {
           console.log(message.sid);

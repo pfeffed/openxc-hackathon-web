@@ -39,25 +39,29 @@ var routes = function(app) {
    * timestamp, speed, id
    */
   app.post('/trigger/:event', function(req, res){
-    console.log("event: "+event);
+    var data = req.body;
     var event = req.params.event;
+    console.log("event: "+event);
+    console.log("Vehicle speed greater than: "+data);
+
     if (event == "vehicle-speet-gt") {
       event = "vsgt";
     } else if (event == "vehicle-speet-lt") {
       event = "vslt";
     }
-    console.log("Vehicle speed greater than: "+res.body);
 
     Subscription
-      .findOne({event: event, vid: res.body.vid})
+      .findOne({event: event, vid: data.vid})
       .exec()
       .then(function(subscription){
         console.log("***** SUBSCRIPTION *****");
         console.log(subscription);
         request
           .post(subscription.targetUrl)
-          .send(res.body)
-          .end(function(res){
+          .send(req.body)
+          .end(function(resp){
+            console.log("zapier response: ");
+            console.log(resp);
             res.json(200);
           });
       });

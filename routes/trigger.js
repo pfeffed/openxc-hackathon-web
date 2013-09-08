@@ -10,7 +10,7 @@ var routes = function(app) {
       return "sub "+data.event+" "+data.trigger_data.vehicle_speed;
     } else if (event == "flgt" || event == "fllt") {
       return "sub "+event+" "+data.trigger_data.fuel_level;
-    } else if (event == "isgt") {
+    } else if (event == "igst") {
       return "sub "+event+" "+data.trigger_data.time_limit;
     } else if (event == "gefo" || event == "gefi") {
       return "sub "+event+" "+data.trigger_data.lat+" "+data.trigger_data.lon+" "+data.trigger_data.radius;

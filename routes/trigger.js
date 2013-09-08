@@ -26,9 +26,8 @@ var routes = function(app) {
       from: "+14154244347"
     }, function(err, message) {
       console.log(message.sid);
-      res.json(201, {"id":subscription._id});
+      cb(err, message);
     });
-    cb(err, message);
   };
 
   app.post('/api/hooks', function(req, res) {

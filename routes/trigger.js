@@ -9,7 +9,11 @@ var routes = function(app) {
     if (event == "vsgt" || event == "vslt") {
       return "sub "+data.event+" "+data.trigger_data.vehicle_speed;
     } else if (event == "flgt" || event == "fllt") {
-      return "sub "+data.event+" "+data.trigger_data.fuel_level;
+      return "sub "+event+" "+data.trigger_data.fuel_level;
+    } else if (event == "isgt") {
+      return "sub "+event+" "+data.trigger_data.time_limit;
+    } else if (event == "gefo" || event == "gefi") {
+      return "sub "+event+" "+data.trigger_data.lat+" "+data.trigger_data.lon+" "+data.trigger_data.radius;
     } else {
       return "sub " + event;
     }

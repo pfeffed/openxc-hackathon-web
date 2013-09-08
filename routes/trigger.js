@@ -81,7 +81,6 @@ var routes = function(app) {
     var date = new Date(parseInt(data.timestamp));
     data.timestamp = date.toString();
 
-    console.log("Vehicle speed greater than: ");
     console.log(data);
     console.log("event: "+event);
 
@@ -103,7 +102,19 @@ var routes = function(app) {
 
   app.get('/resubscribe', function(req, res){
     Subscription.find({}, function(err, subs){
-      _.each(subs, function(element, index, list){
+      _.each(subs, function(sub, index, list){
+        console.log(sub.triggerData);
+        var data = {};
+        data.trigger_data = sub.triggerData;
+        data.event = sub.event;
+        data.vid = sub.vid;
+
+        var msg = createMessage(data);
+        console.log(msg);
+
+        sendSMS(data.trigger_data.vid, msg, function(err, message) {
+          console.log(message.sid);
+        });
 
       });
 

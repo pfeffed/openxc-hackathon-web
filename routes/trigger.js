@@ -4,18 +4,18 @@ var Subscription = require('../models/subscription'),
 var routes = function(app) {
   var twilio = require('twilio')("AC078c39b936b7586257be47ba93ad83d6", "f3d433ae6b951c4134d410baf4b89a78");
 
+  var sendSMS = function(phoneNumber, data, cb){
+
+    cb();
+  };
+
   app.post('/api/hooks', function(req, res) {
     console.log("API Hooks:");
     console.log(req.body);
 
     var data = req.body;
-    var sub = new Subscription({
-      event: data.event,
-      vid: data.trigger_data.vid,
-      targetUrl: data.target_url
-    });
 
-    Subscription.update({
+    Subscription.findOneAndUpdate({
       event: data.event,
       vid: data.trigger_data.vid
     },{
@@ -24,7 +24,8 @@ var routes = function(app) {
       targetUrl: data.target_url
     }, {
       upsert: true
-    },function(err){
+    },function(err, subscription){
+      console.log(subscription);
       if (err) {
         res.json(400, err);
       } else {
@@ -36,7 +37,7 @@ var routes = function(app) {
           from: "+14154244347"
         }, function(err, message) {
           console.log(message.sid);
-          res.json(201);
+          res.json(201, {"id":subscription._id});
         });
       }
     });

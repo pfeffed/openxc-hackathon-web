@@ -11,7 +11,8 @@
     "connect-mongo": "0.3.x",
     "twilio": "*",
     "superagent": "*",
-    "node-gcm": "*"
+    "node-gcm": "*",
+    "underscore": "*"
   },
   "devDependencies": {
     "mocha": "*"
@@ -20,8 +21,8 @@
     "start": "nodemon -w models -w config -w routes app.js"
   },
   "engines": {
-      "node": "0.8.x",
-      "npm": "1.2.x"
+    "node": "0.8.x",
+    "npm": "1.2.x"
   },
   "repository": "",
   "private": true

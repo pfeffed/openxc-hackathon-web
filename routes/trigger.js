@@ -98,6 +98,15 @@ var routes = function(app) {
           });
       });
   });
+
+  app.get('/resubscribe', function(req, res){
+    Subscription.find({}, function(err, subs){
+
+
+      res.json(200, {"message":"ok"});
+    });
+
+  });
 };
 
 module.exports = routes;

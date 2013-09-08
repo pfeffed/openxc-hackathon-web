@@ -10,6 +10,7 @@
     "stylus": "0.37.x",
     "connect-mongo": "0.3.x",
     "twilio": "*",
+    "superagent": "*",
     "node-gcm": "*"
   },
   "devDependencies": {

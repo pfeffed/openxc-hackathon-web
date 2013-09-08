@@ -19,7 +19,7 @@ var routes = function(app) {
     }
   }
 
-  var sendSMS = function(phoneNumber, message, cb){
+  var sendSMS = function(phoneNumber, msg, cb){
     twilio.sms.messages.create({
       body: msg,
       to: data.trigger_data.vid,

@@ -1,4 +1,5 @@
-var Subscription = require('../models/subscription');
+var Subscription = require('../models/subscription'),
+    request = require('superagent');
 
 var routes = function(app) {
   var twilio = require('twilio')("AC078c39b936b7586257be47ba93ad83d6", "f3d433ae6b951c4134d410baf4b89a78");
@@ -37,9 +38,29 @@ var routes = function(app) {
    * body should include
    * timestamp, speed, id
    */
-  app.post('/trigger/vehicle-speed-gt', function(req, res){
+  app.post('/trigger/:event', function(req, res){
+    console.log("event: "+event);
+    var event = req.params.event;
+    if (event == "vehicle-speet-gt") {
+      event = "vsgt";
+    } else if (event == "vehicle-speet-lt") {
+      event = "vslt";
+    }
     console.log("Vehicle speed greater than: "+res.body);
-    res.json(200);
+
+    Subscription
+      .findOne({event: event, vid: res.body.vid})
+      .exec()
+      .then(function(subscription){
+        console.log("***** SUBSCRIPTION *****");
+        console.log(subscription);
+        request
+          .post(subscription.targetUrl)
+          .send(res.body)
+          .end(function(res){
+            res.json(200);
+          });
+      });
   });
 
   app.post('/trigger/vehicle-speed-lt', function(req, res){

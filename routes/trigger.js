@@ -42,14 +42,11 @@ var routes = function(app) {
     var data = req.body;
     var event = req.params.event;
 
+    var date = new Date(parseInt(data.timestamp));
+    data.timestamp = date.toString();
+
     console.log("Vehicle speed greater than: ");
     console.log(data);
-
-    if (event == "vehicle-speet-gt") {
-      event = "vsgt";
-    } else if (event == "vehicle-speet-lt") {
-      event = "vslt";
-    }
     console.log("event: "+event);
 
     Subscription
@@ -62,8 +59,7 @@ var routes = function(app) {
           .post(subscription.targetUrl)
           .send(req.body)
           .end(function(resp){
-            console.log("zapier response: ");
-            console.log(resp);
+            console.log("zapier responded");
             res.json(200);
           });
       });

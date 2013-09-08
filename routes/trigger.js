@@ -42,6 +42,8 @@ var routes = function(app) {
     var data = req.body;
     var event = req.params.event;
 
+    console.log("original timestamp:");
+    console.log(data.timestamp);
     var date = new Date(parseInt(data.timestamp));
     data.timestamp = date.toString();
 

@@ -15,7 +15,16 @@ var routes = function(app) {
       targetUrl: data.target_url
     });
 
-    sub.save(function(err) {
+    Subscription.update({
+      event: data.event,
+      vid: data.trigger_data.vid
+    },{
+      event: data.event,
+      vid: data.trigger_data.vid,
+      targetUrl: data.target_url
+    }, {
+      upsert: true
+    },function(err){
       if (err) {
         res.json(400, err);
       } else {
@@ -32,6 +41,11 @@ var routes = function(app) {
       }
     });
 
+  });
+
+  app.delete('/api/hooks/:id', function(req, res){
+    console.log("DELETE "+req.params.id);
+    res.json(200);
   });
 
   /**

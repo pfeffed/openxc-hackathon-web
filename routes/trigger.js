@@ -22,7 +22,7 @@ var routes = function(app) {
   var sendSMS = function(phoneNumber, msg, cb){
     twilio.sms.messages.create({
       body: msg,
-      to: data.trigger_data.vid,
+      to: phoneNumber,
       from: "+14154244347"
     }, function(err, message) {
       console.log(message.sid);

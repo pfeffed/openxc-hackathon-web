@@ -5,8 +5,11 @@ var routes = function(app) {
   var twilio = require('twilio')("AC078c39b936b7586257be47ba93ad83d6", "f3d433ae6b951c4134d410baf4b89a78");
 
   var createMessage(data) {
+    var event = data.event;
     if (event == "vsgt" || event == "vslt") {
-      return "sub "+data.event+" "+data.trigger_data.vehicle_speed
+      return "sub "+data.event+" "+data.trigger_data.vehicle_speed;
+    } else if (event == "flgt" || event == "fllt") {
+      return "sub "+data.event+" "+data.trigger_data.fuel_level;
     } else {
       return "sub " + event;
     }

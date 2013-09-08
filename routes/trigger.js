@@ -4,9 +4,24 @@ var Subscription = require('../models/subscription'),
 var routes = function(app) {
   var twilio = require('twilio')("AC078c39b936b7586257be47ba93ad83d6", "f3d433ae6b951c4134d410baf4b89a78");
 
-  var sendSMS = function(phoneNumber, data, cb){
+  var createMessage(data) {
+    if (event == "vsgt" || event == "vslt") {
+      return "sub "+data.event+" "+data.trigger_data.vehicle_speed
+    } else {
+      return "sub " + event;
+    }
+  }
 
-    cb();
+  var sendSMS = function(phoneNumber, message, cb){
+    twilio.sms.messages.create({
+      body: msg,
+      to: data.trigger_data.vid,
+      from: "+14154244347"
+    }, function(err, message) {
+      console.log(message.sid);
+      res.json(201, {"id":subscription._id});
+    });
+    cb(err, message);
   };
 
   app.post('/api/hooks', function(req, res) {
@@ -29,13 +44,9 @@ var routes = function(app) {
       if (err) {
         res.json(400, err);
       } else {
-        var msg = "sub "+data.event+" "+data.trigger_data.vehicle_speed;
+        var msg = createMessage(data);
         console.log(msg);
-        twilio.sms.messages.create({
-          body: msg,
-          to: data.trigger_data.vid,
-          from: "+14154244347"
-        }, function(err, message) {
+        sendSMS(data.trigger_data.vid, msg, function(err, message) {
           console.log(message.sid);
           res.json(201, {"id":subscription._id});
         });

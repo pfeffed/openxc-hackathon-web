@@ -41,7 +41,7 @@ var routes = function(app) {
   app.post('/trigger/:event', function(req, res){
     var data = req.body;
     var event = req.params.event;
-    console.log("event: "+event);
+
     console.log("Vehicle speed greater than: ");
     console.log(data);
 
@@ -50,6 +50,7 @@ var routes = function(app) {
     } else if (event == "vehicle-speet-lt") {
       event = "vslt";
     }
+    console.log("event: "+event);
 
     Subscription
       .findOne({event: event, vid: data.vid})

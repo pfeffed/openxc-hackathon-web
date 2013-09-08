@@ -1,5 +1,6 @@
 var Subscription = require('../models/subscription'),
-    request = require('superagent');
+    request = require('superagent'),
+    _ = require("underscore");
 
 var routes = function(app) {
   var twilio = require('twilio')("AC078c39b936b7586257be47ba93ad83d6", "f3d433ae6b951c4134d410baf4b89a78");
@@ -42,7 +43,8 @@ var routes = function(app) {
     },{
       event: data.event,
       vid: data.trigger_data.vid,
-      targetUrl: data.target_url
+      targetUrl: data.target_url,
+      triggerData: data.trigger_data
     }, {
       upsert: true
     },function(err, subscription){
@@ -101,7 +103,9 @@ var routes = function(app) {
 
   app.get('/resubscribe', function(req, res){
     Subscription.find({}, function(err, subs){
+      _.each(subs, function(element, index, list){
 
+      });
 
       res.json(200, {"message":"ok"});
     });

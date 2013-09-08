@@ -10,7 +10,8 @@ var routes = function(app) {
     var data = req.body;
     var sub = new Subscription({
       event: data.event,
-      vid: data.trigger_data.vid
+      vid: data.trigger_data.vid,
+      targetUrl: data.target_url
     });
 
     sub.save(function(err) {
@@ -18,7 +19,7 @@ var routes = function(app) {
         res.json(400, err);
       } else {
         twilio.sms.messages.create({
-          body: "sub "+event+" "+data.trigger_data.vehicle_speed,
+          body: "sub "+data.event+" "+data.trigger_data.vehicle_speed,
           to: req.params.id,
           from: "+14154244347"
         }, function(err, message) {
